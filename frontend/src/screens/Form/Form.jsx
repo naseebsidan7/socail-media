@@ -68,7 +68,7 @@ const Form = () => {
                   {
                     method: 'POST',
                     body: formData,
-                    credentials: 'include'
+                 
                   }
             );
             const savedUser = await savedUserResponse.json();
@@ -88,7 +88,7 @@ const Form = () => {
               method: 'POST',
               headers: { 'Content-Type': 'application/json'},
               body: JSON.stringify(values),
-              credentials: 'include'
+ 
             }
         );
         

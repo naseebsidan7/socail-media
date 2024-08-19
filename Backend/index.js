@@ -36,7 +36,6 @@ app.use(bodyParser.urlencoded({ limit:'30mb', extended:true}))
 app.use(cors({
   origin: 'https://qoott.netlify.app', // Allow requests from your Netlify frontend
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // If you're using cookies or authentication
 }));
 
 app.options('*', cors());
