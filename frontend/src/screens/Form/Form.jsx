@@ -67,7 +67,8 @@ const Form = () => {
                    `${BASEURL}/auth/register`,
                   {
                     method: 'POST',
-                    body: formData
+                    body: formData,
+                    credentials: 'include'
                   }
             );
             const savedUser = await savedUserResponse.json();
