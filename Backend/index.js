@@ -27,18 +27,25 @@ dotenv.config()
 const app = express()
 
 app.use(express.json())
-app.use(helmet())
-app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }))
+app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
 app.use(morgan('common'))
 app.use(bodyParser.json({ limit:'30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit:'30mb', extended:true}))
 
+const allowedOrigins = ['http://localhost:5173', 'https://qoott.netlify.app'];
 app.use(cors({
-  origin: 'https://qoott.netlify.app', // Allow requests from your Netlify frontend
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // If you're using cookies or authentication
 }));
 
-app.options('*', cors());
 app.use('/assets',express.static(path.join(__dirname, 'public/assets')))
 
 
@@ -65,6 +72,8 @@ app.use('/auth', authRoutes)
 app.use('/users', userRoutes)
 app.use('/posts', postRoutes)
 app.use('/test', testRoutes)
+
+ 
  
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 6001
