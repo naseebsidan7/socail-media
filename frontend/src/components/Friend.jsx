@@ -24,9 +24,10 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     const isFriend = Array.isArray(friends) ? friends.find((friend) => friend._id === friendId) : false;
 
     const patchFrind = async () => {
-        
+
+      const BASEURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
         const response = await fetch(
-          `http://localhost:3001/users/${_id}/${friendId}`,
+          `${BASEURL}/users/${_id}/${friendId}`,
           {
             method: "PATCH",
             headers: {

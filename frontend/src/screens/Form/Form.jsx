@@ -53,6 +53,7 @@ const Form = () => {
       const isLogin = pageType === 'login'
       const isRegister = pageType === 'register'
 
+      const BASEURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
     /* HANDLE FORM */
       const register = async (values, onSubmitProps) => {
             // This allows us to send form info with image
@@ -63,7 +64,7 @@ const Form = () => {
             formData.append('picturePath', values.picture.name)
          
             const savedUserResponse = await fetch(
-                  'http://localhost:3001/auth/register',
+                   `${BASEURL}/auth/register`,
                   {
                     method: 'POST',
                     body: formData
@@ -81,7 +82,7 @@ const Form = () => {
       const login = async (values, onSubmitProps) => {
         
         const loggedInResponse = await fetch(
-            'http://localhost:3001/auth/login',
+            `${BASEURL}/auth/login`,
             {
               method: 'POST',
               headers: { 'Content-Type': 'application/json'},
