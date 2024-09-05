@@ -26,7 +26,7 @@ const UserWidget = ({ userId, picturepath }) => {
       const navigate = useNavigate()
  
       const getUser = async () => {
-            const response = await fetch(`/api/users/${userId}`,
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`,
                 {
                     method: 'GET',
                     headers: { Authorization: `Bearer ${token}`}

@@ -27,7 +27,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 
  
         const response = await fetch(
-          `/api/users/${_id}/${friendId}`,
+          `${import.meta.env.VITE_API_URL}/users/${_id}/${friendId}`,
           {
             method: "PATCH",
             headers: {

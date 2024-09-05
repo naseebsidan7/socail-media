@@ -5,7 +5,7 @@ const UserImage = ({ image, size='60px'}) => {
  
       return (
          <Box width={size} height={size}>
-              <img src={`/api/assets/${image}`} 
+              <img src={`${import.meta.env.VITE_API_URL}/assets/${image}`} 
                    style={{ objectFit:'cover', borderRadius:'50%' }} 
                    width={size} 
                    height={size} 

@@ -11,7 +11,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
  
     const getPosts = async () => {
-        const response = await fetch(`/api/posts`,{
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/posts`,{
                method: 'GET',
                headers: { Authorization: `Bearer ${token}`}
         })
@@ -19,7 +19,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
         dispatch(setPosts({ posts: data}))
     }
     const getUserPosts = async () => {
-        const response = await fetch(`/api/posts/${userId}/posts`,{
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${userId}/posts`,{
                method: 'GET',
                headers: { Authorization: `Bearer ${token}`}
         })

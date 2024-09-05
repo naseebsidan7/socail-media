@@ -63,7 +63,7 @@ const Form = () => {
             formData.append('picturePath', values.picture.name)
             // /api/auth/signin
             const savedUserResponse = await fetch(
-                   `/api/auth/register`,
+                   `${import.meta.env.VITE_API_URL}/auth/register`,
                   {
                     method: 'POST',
                     body: formData,
@@ -81,7 +81,7 @@ const Form = () => {
       const login = async (values, onSubmitProps) => {
         
         const loggedInResponse = await fetch(
-            `/api/auth/login`,
+            `${import.meta.env.VITE_API_URL}/auth/login`,
             {
               method: 'POST',
               headers: { 'Content-Type': 'application/json'},

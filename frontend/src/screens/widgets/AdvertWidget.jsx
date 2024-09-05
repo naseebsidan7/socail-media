@@ -8,8 +8,7 @@ const AdvertWidget = () => {
     const dark = palette.neutral.dark;
     const main = palette.neutral.main;
     const medium = palette.neutral.medium;
-    const BASEURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
-
+ 
   return (
     <WidgetWrapper>
         <FlexBetween>
@@ -20,7 +19,7 @@ const AdvertWidget = () => {
                   Create Ad
               </Typography>
         </FlexBetween>
-        <img width='100%' height='auto' alt='advert' src={`${BASEURL}/assets/info4.jpeg`} style={{ borderRadius: '0.75rem',margin:'0.75rem 0'}}/>
+        <img width='100%' height='auto' alt='advert' src={`${import.meta.env.VITE_API_URL}/assets/info4.jpeg`} style={{ borderRadius: '0.75rem',margin:'0.75rem 0'}}/>
         <FlexBetween>
             <Typography color={main}>MikaCosmetics</Typography>
             <Typography color={medium}>mikacosmetics.com</Typography>
