@@ -61,7 +61,9 @@ app.use('/api/posts', postRoutes)
 app.use('/api/test', testRoutes)
 
 app.get('/', (req, res) => res.send('Server is Ready'))
- 
+app.get('/test', (req, res) => res.sendFile('testing'))
+
+
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 3001
 mongoose.connect(process.env.MONGO_URL)
