@@ -60,6 +60,7 @@ app.use('/api/users', userRoutes)
 app.use('/api/posts', postRoutes)
 app.use('/api/test', testRoutes)
 
+app.get('/', (req, res) => res.send('Server is Ready'))
  
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 3001

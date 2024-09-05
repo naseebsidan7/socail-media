@@ -7,7 +7,7 @@ server:{
      port: 5173,
      proxy: {
         '/api':{
-          target: 'https://qoott.vercel.app/',
+          target:'https://socail-media-9yli.onrender.com',
           changeOrigin:true
         }
      }
