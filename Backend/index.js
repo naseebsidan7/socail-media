@@ -4,7 +4,6 @@ import mongoose from 'mongoose';
  
 import dotenv from 'dotenv';
 import multer from 'multer';
-import helmet from 'helmet';
 import morgan from 'morgan';
 import path from 'path';
 import cors from 'cors'
@@ -28,8 +27,6 @@ dotenv.config()
 const app = express()
 
 app.use(express.json())
-app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
 app.use(morgan('common'))
 app.use(bodyParser.json({ limit:'30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit:'30mb', extended:true}))
@@ -64,11 +61,6 @@ app.use('/api/posts', postRoutes)
 app.use('/api/test', testRoutes)
 
  
- 
-app.use(express.static(path.join(__dirname,'frontend/dist')));
-app.get('*',(req, res)=> res.sendFile(path.join(__dirname,'frontend','dist','index.html')) );
-
-
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 3001
 mongoose.connect(process.env.MONGO_URL)
