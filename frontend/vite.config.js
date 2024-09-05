@@ -7,7 +7,7 @@ server:{
      port: 5173,
      proxy: {
         '/api':{
-          target:'http://localhost:3001',
+          target: 'https://qoott.vercel.app/',
           changeOrigin:true
         }
      }
