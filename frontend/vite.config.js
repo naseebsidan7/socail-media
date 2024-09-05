@@ -7,7 +7,7 @@ server:{
      proxy: {
         '/api':{
           target:'https://socail-media-9yli.onrender.com',
-          secure: false
+          changeOrigin:true
         }
      }
   },
