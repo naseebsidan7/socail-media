@@ -1,12 +1,13 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-import cors from 'cors';
+ 
 import dotenv from 'dotenv';
 import multer from 'multer';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import path from 'path';
+import cors from 'cors'
 
 import { fileURLToPath } from 'url';
 import { verifyToken } from './middleware/Auth.js';
@@ -20,7 +21,7 @@ import testRoutes from './routes/test.js';
 
  
 /* CONFIGURATIONS */
-const __filename = fileURLToPath(import.meta.url);  console.log(__filename+"filename")
+const __filename = fileURLToPath(import.meta.url);   
 const __dirname = path.dirname(__filename);  // current dir path
 dotenv.config()
 
@@ -33,21 +34,10 @@ app.use(morgan('common'))
 app.use(bodyParser.json({ limit:'30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit:'30mb', extended:true}))
 
-const allowedOrigins = ['http://localhost:5173', 'https://qoott.netlify.app'];
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // If you're using cookies or authentication
-}));
+ 
 
-app.use('/assets',express.static(path.join(__dirname, 'public/assets')))
-
+app.use('/api/assets',express.static(path.join(__dirname, 'public/assets')))
+app.use(cors())
 
 /* FILE STORAGE */
 const storage = multer.diskStorage({
@@ -63,20 +53,24 @@ const upload = multer({ storage })
 
 
 /* ROUTES WITH FILES */
-app.post('/auth/register', upload.single('picture'), register)
-app.post('/posts', verifyToken, upload.single('picture'), creatPost)
+app.post('/api/auth/register', upload.single('picture'), register)
+app.post('/api/posts', verifyToken, upload.single('picture'), creatPost)
 
 /* ROUTES */
-app.get('/', (req, res)=> res.send('Server is ready '));
-app.use('/auth', authRoutes)
-app.use('/users', userRoutes)
-app.use('/posts', postRoutes)
-app.use('/test', testRoutes)
+ 
+app.use('/api/auth', authRoutes)
+app.use('/api/users', userRoutes)
+app.use('/api/posts', postRoutes)
+app.use('/api/test', testRoutes)
 
  
  
+app.use(express.static(path.join(__dirname,'frontend/dist')));
+app.get('*',(req, res)=> res.sendFile(path.join(__dirname,'frontend','dist','index.html')) );
+
+
 /* MONGOOSE SETUP */
-const PORT = process.env.PORT || 6001
+const PORT = process.env.PORT || 3001
 mongoose.connect(process.env.MONGO_URL)
 .then(()=>{
      app.listen(PORT,()=> console.log(`Server is running at port ${PORT} `));

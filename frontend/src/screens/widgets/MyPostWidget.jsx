@@ -32,8 +32,8 @@ const MyPostWidget = ({ picturePath }) => {
                 formData.append('picturePath',image.name)
             }
 
-            const BASEURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
-            const response = await fetch(`${BASEURL}/posts`,{
+ 
+            const response = await fetch(`/api/posts`,{
                 method:'POST',
                 headers: { Authorization: `Bearer ${token}`},
                 body: formData

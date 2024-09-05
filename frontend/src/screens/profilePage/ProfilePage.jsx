@@ -14,10 +14,10 @@ const ProfilePage = () => {
     const token = useSelector((state) => state.token)
     const isNonMobileScreens = useMediaQuery('(min-width:1000px)')
     
-    const BASEURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
+ 
     const getUser = async () =>{
           const response = await fetch(
-            `${BASEURL}/users/${userId}`,{
+            `/api/users/${userId}`,{
               method: 'GET',
               headers: { Authorization: `Bearer ${token}`}
             })

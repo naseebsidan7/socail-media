@@ -9,9 +9,9 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     const posts = useSelector((state) => state.posts)
     const token = useSelector((state) => state.token)
 
-    const BASEURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
+ 
     const getPosts = async () => {
-        const response = await fetch(`${BASEURL}/posts`,{
+        const response = await fetch(`/api/posts`,{
                method: 'GET',
                headers: { Authorization: `Bearer ${token}`}
         })
@@ -19,7 +19,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
         dispatch(setPosts({ posts: data}))
     }
     const getUserPosts = async () => {
-        const response = await fetch(`${BASEURL}/posts/${userId}/posts`,{
+        const response = await fetch(`/api/posts/${userId}/posts`,{
                method: 'GET',
                headers: { Authorization: `Bearer ${token}`}
         })

@@ -24,10 +24,9 @@ const UserWidget = ({ userId, picturepath }) => {
       const main = palette.neutral.main
 
       const navigate = useNavigate()
-
-      const BASEURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
+ 
       const getUser = async () => {
-            const response = await fetch(`${BASEURL}/users/${userId}`,
+            const response = await fetch(`/api/users/${userId}`,
                 {
                     method: 'GET',
                     headers: { Authorization: `Bearer ${token}`}

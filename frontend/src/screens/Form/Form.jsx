@@ -53,7 +53,6 @@ const Form = () => {
       const isLogin = pageType === 'login'
       const isRegister = pageType === 'register'
 
-      const BASEURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
     /* HANDLE FORM */
       const register = async (values, onSubmitProps) => {
             // This allows us to send form info with image
@@ -62,13 +61,12 @@ const Form = () => {
                  formData.append(value, values[value])
             }
             formData.append('picturePath', values.picture.name)
-         
+            // /api/auth/signin
             const savedUserResponse = await fetch(
-                   `${BASEURL}/auth/register`,
+                   `/api/auth/register`,
                   {
                     method: 'POST',
                     body: formData,
-                 
                   }
             );
             const savedUser = await savedUserResponse.json();
@@ -83,7 +81,7 @@ const Form = () => {
       const login = async (values, onSubmitProps) => {
         
         const loggedInResponse = await fetch(
-            `${BASEURL}/auth/login`,
+            `/api/auth/login`,
             {
               method: 'POST',
               headers: { 'Content-Type': 'application/json'},

@@ -18,9 +18,7 @@ function App() {
         <BrowserRouter>
           <ThemeProvider theme={theme}>
               <CssBaseline/> 
-          
               <Routes>
-                  <Route path="*" element={isAuth? <Navigate to='/home' replace /> : <Navigate to='/' replace />}  />
                   <Route path="/" element={isAuth? <Navigate to='/home' replace /> : <LoginPage/>}/>
                   <Route path="/home" element={isAuth? <HomePage/> : <Navigate to='/' />} />
                   <Route path="/profile/:userId" element={isAuth? <ProfilePage/> : <Navigate to='/' />} />
