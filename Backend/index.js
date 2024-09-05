@@ -61,7 +61,7 @@ app.use('/api/posts', postRoutes)
 app.use('/api/test', testRoutes)
 
 app.get('/', (req, res) => res.send('Server is Ready'))
-app.get('/test', (req, res) => res.sendFile('testing'))
+app.get('/test', (req, res) => res.send('testing'))
 
 
 /* MONGOOSE SETUP */
